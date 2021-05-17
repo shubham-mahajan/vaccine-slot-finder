@@ -5,7 +5,8 @@ date = os.getenv('START_DATE')
 
 
 def fetch(url):
-    return requests.get(url)
+    headers = {'Host':'cdn-api.co-vin.in', 'Accept':'application/json', 'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15','Referer':'https://www.cowin.gov.in/'}
+    return requests.get(url, headers=headers)
 
 def fetch_by_pincode():
     '''Method to fetch on the basis of pincode'''
@@ -20,7 +21,7 @@ def fetch_districts():
     '''Method to fetch on the basis of discrict code'''
     districts = os.getenv('DISTRICTS').split(',')
     for district in districts:
-        url = f'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={district}&date={date}'
+        url = f'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=213&date=17-05-2021'
         res = fetch(url)
         if res.status_code == 200:
             check_sesssion(res.json())

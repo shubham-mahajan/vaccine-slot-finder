@@ -91,4 +91,3 @@ class Notification:
                     self._send_email(message)
             except:
                 pass
-
